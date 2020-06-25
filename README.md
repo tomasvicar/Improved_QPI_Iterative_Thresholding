@@ -1,1 +1,1 @@
-# Improved_QP_Iiterative_Thresholding
+# Improved_QPI_Iiterative_Thresholding
