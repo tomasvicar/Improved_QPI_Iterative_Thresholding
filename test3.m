@@ -1,7 +1,7 @@
 clc;clear all;close all force;
 addpath('utils')
 
-addpath('utils')
+
 
 for k=1:3
     II(:,:,k)=imread(['../data_reveiw/qpi' num2str(k) '.tif']);
