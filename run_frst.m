@@ -37,11 +37,13 @@ results = bayesopt(fun,vars,'NumSeedPoints',10,'MaxObjectiveEvaluations',300);
 k=0;
 for kk=4:18
     k=k+1;
-    II(:,:,k)=imread(['../data_reveiw/qpi' num2str(k) '.tif']);
-    GTT(:,:,k)=imread(['../data_reveiw/qpi' num2str(k) '_maska.png']);
+    II(:,:,k)=imread(['../data_reveiw/qpi' num2str(kk) '.tif']);
+    GTT(:,:,k)=imread(['../data_reveiw/qpi' num2str(kk) '_maska.png']);
 end
 fun = @(x) segm_frst_eval(II,GTT,x.init_r,x.max_r,x.t_frst,x.kr,x.alpha,min_hole,T_bg);
 
 res=fun(results.XAtMinObjective)
 
 save('params_frst.mat','results','res')
+
+load('params_frst.mat')

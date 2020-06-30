@@ -11,9 +11,12 @@ b=false(size(b));
 % p=p{:,{'PixelList'}};
 
 % p=cellfun()
-p=cat(1,p.PixelIdxList{:});
+if ~isempty(p)
+    p=cat(1,p.PixelIdxList{:});
+    b(p)=1;
+end
 
-b(p)=1;
+
 
 
 end

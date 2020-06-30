@@ -29,11 +29,13 @@ results = bayesopt(fun,vars,'NumSeedPoints',5,'MaxObjectiveEvaluations',30);
 k=0;
 for kk=4:18
     k=k+1;
-    II(:,:,k)=imread(['../data_reveiw/qpi' num2str(k) '.tif']);
-    GTT(:,:,k)=imread(['../data_reveiw/qpi' num2str(k) '_maska.png']);
+    II(:,:,k)=imread(['../data_reveiw/qpi' num2str(kk) '.tif']);
+    GTT(:,:,k)=imread(['../data_reveiw/qpi' num2str(kk) '_maska.png']);
 end
 fun = @(x) segm_loewke_orig_eval(II,GTT,x.min_mass,min_hole,T_bg);
 
 res=fun(results.XAtMinObjective)
 
 save('params_loewke_orig.mat','results','res')
+
+load('params_loewke_orig.mat')

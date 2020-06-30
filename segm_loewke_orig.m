@@ -25,10 +25,10 @@ while ~(sum(sum(binary_new==binary_old))==numel(binary_new))
         bb(bb==0)=1;
 
         if bb(2)+bb(4)>size(L,1)
-            bb(4)=bb(4)-(bb(2)+bb(4)-size(l,1));
+            bb(4)=bb(4)-(bb(2)+bb(4)-size(L,1));
         end
         if bb(1)+bb(3)>size(L,2)
-            bb(3)=bb(3)-(bb(1)+bb(3)-size(l,2));
+            bb(3)=bb(3)-(bb(1)+bb(3)-size(L,2));
         end
 
         grey_blob=grey_blob(bb(2):bb(2)+bb(4),bb(1):bb(1)+bb(3));
