@@ -1,4 +1,4 @@
-function dice=segm_qpi_log2_eval(II,GTT,lambda,sigmas,min_mass,min_hole,T_bg,h)
+function seg=segm_qpi_log2_eval(II,GTT,lambda,sigmas,min_mass,min_hole,T_bg,h)
 
 segmentation=zeros(size(GTT));
 for k=1:size(II,3)
@@ -8,7 +8,7 @@ for k=1:size(II,3)
     segmentation(:,:,k)=segm;
     
 end
-[dice]=-dice_final_segmentation(GTT,segmentation);
+[seg]=-seg_final_segmentation(GTT,segmentation);
 
 
 end
