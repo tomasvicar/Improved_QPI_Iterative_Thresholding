@@ -10,26 +10,31 @@ segms={};
 norm=[-0.3,2];
 siz=60;
 
+pocet=0;
 k=0;
-for kk=4:18
+for kk=1:18
     k=k+1;
-    II(:,:,k)=imread(['../data_reveiw/qpi' num2str(kk) '.tif']);
-    GTT(:,:,k)=imread(['../data_reveiw/qpi' num2str(kk) '_maska.png']);
+    II(:,:,k)=imread(['../../data_reveiw/qpi' num2str(kk) '.tif']);
+    GTT(:,:,k)=imread(['../../data_reveiw/qpi' num2str(kk) '_maska.png']);
+    pocet=pocet+max(max(bwlabel(GTT(:,:,k))));
 end
 min_hole=60;
 T_bg=0.05;
+pocet
 
 
-
+pocet=0;
 k=0;
-for kk=6:14
+for kk=1:14
     k=k+1;
-    II(:,:,k)=imread(['../data_dense/img_' num2str(kk,'%03.f') '.tif']);
-    tmp=imread(['../data_dense/img_' num2str(kk,'%03.f') '.png'])>0;
+    II(:,:,k)=imread(['../../data_dense/img_' num2str(kk,'%03.f') '.tif']);
+    tmp=imread(['../../data_dense/img_' num2str(kk,'%03.f') '.png'])>0;
     GTT(:,:,k)=bwareaopen(tmp,30);
+    pocet=pocet+max(max(bwlabel(GTT(:,:,k))));
 end
 min_hole=60;
 T_bg=0.05;
+pocet
 
 
 % img_num=8;

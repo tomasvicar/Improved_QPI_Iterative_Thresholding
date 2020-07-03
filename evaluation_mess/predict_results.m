@@ -6,11 +6,12 @@ segms={};
 norm=[-0.3,2];
 siz=200;
 
+
 k=0;
 for kk=4:18
     k=k+1;
-    II(:,:,k)=imread(['../data_reveiw/qpi' num2str(kk) '.tif']);
-    GTT(:,:,k)=imread(['../data_reveiw/qpi' num2str(kk) '_maska.png']);
+    II(:,:,k)=imread(['../../data_reveiw/qpi' num2str(kk) '.tif']);
+    GTT(:,:,k)=imread(['../../data_reveiw/qpi' num2str(kk) '_maska.png']);
 end
 min_hole=60;
 T_bg=0.05;
@@ -27,6 +28,7 @@ T_bg=0.05;
 
 img_num=12;
 pos=[368,96];
+
 
 
 I=II(:,:,img_num);
@@ -56,6 +58,8 @@ segms=[segms,segm>0];
 
 load('params_proposed2.mat')
 x=results.XAtMinObjective;
+
+%%%% sigma and lambda is accidentaly fliped in optimization
 segm=segm_qpi_log2(I,x.sigmas,x.lambda,x.min_mass,min_hole,T_bg,x.h);
 segm=segm(pos(1):pos(1)+siz,pos(2):pos(2)+siz);
 segms=[segms,segm>0];
@@ -75,8 +79,8 @@ Is=repmat({mat2gray(I,norm)},[1,5]);
 k=0;
 for kk=6:14
     k=k+1;
-    II(:,:,k)=imread(['../data_dense/img_' num2str(kk,'%03.f') '.tif']);
-    tmp=imread(['../data_dense/img_' num2str(kk,'%03.f') '.png'])>0;
+    II(:,:,k)=imread(['../../data_dense/img_' num2str(kk,'%03.f') '.tif']);
+    tmp=imread(['../../data_dense/img_' num2str(kk,'%03.f') '.png'])>0;
     GTT(:,:,k)=bwareaopen(tmp,30);
 end
 min_hole=60;
@@ -85,6 +89,9 @@ T_bg=0.05;
 
 img_num=8;
 pos=[58,17];
+
+
+
 
 % img_num=6;
 % pos=[164,292];
@@ -112,6 +119,8 @@ segms=[segms,segm>0];
 
 load('params_proposed2_dense.mat')
 x=results.XAtMinObjective;
+
+%%%% sigma and lambda is accidentaly fliped in optimization
 segm=segm_qpi_log2(I,x.sigmas,x.lambda,x.min_mass,min_hole,T_bg,x.h);
 segm=segm(pos(1):pos(1)+siz,pos(2):pos(2)+siz);
 segms=[segms,segm>0];
@@ -124,12 +133,6 @@ I=I(pos(1):pos(1)+siz,pos(2):pos(2)+siz);
 
 
 Is=[Is,repmat({mat2gray(I,norm)},[1,5])];
-
-
-
-
-
-
 
 
 
@@ -162,7 +165,7 @@ tmp=linspace(0,shape(2),6);
 tmp=tmp(1:5);
 tmp=tmp+0.5*tmp(2);
 xticks(tmp)
-xticklabels({'Input','Ground Truth','Iterative Thresholding','dFRST+MCWS ','IIT (proposed)'})
+xticklabels({'Input','Ground Truth','LIT','dFRST+MCWS ','IIT (proposed)'})
 
 
 tmp=linspace(0,shape(1),3);
@@ -172,11 +175,11 @@ yticks(tmp)
 yticklabels({'PNT1A','A2780'})
 ytickangle(90)
 
-set(gca,'fontsize', 16)
+set(gca,'fontsize', 17)
 
 set(gca,'TickLength',[0 0])
 
 
-print('../example_result','-depsc')
+print('../../example_result','-depsc')
 
-print('../example_result','-dtiff','-r600')
+print('../../example_result','-dtiff','-r600')
